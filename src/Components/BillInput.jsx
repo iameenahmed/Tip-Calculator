@@ -1,10 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import dollarIcon from "../assets/icon-dollar.svg";
 
-export function BillInput({ handleInput, error, isResetBtnClicked }) {
-  const inputRef = useRef(null);
-  isResetBtnClicked && (inputRef.current.value = "");
+const BillInput = ({ handleInput, error, isResetBtnClicked }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    if (isResetBtnClicked) setInputValue("");
+  }, [isResetBtnClicked]);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    handleInput(e);
+  };
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -16,9 +25,9 @@ export function BillInput({ handleInput, error, isResetBtnClicked }) {
           type="text"
           name="billAmount"
           id="billAmount"
+          value={inputValue}
           placeholder="0"
-          ref={inputRef}
-          onChange={handleInput}
+          onChange={handleChange}
           className={`mt-2 block w-full rounded-md bg-VeryLightGrayishCyan px-4 py-3 text-right  placeholder:text-VeryDarkCyan md:text-2xl ${
             error ? "outline-red-500" : "outline-StrongCyan"
           }`}
@@ -31,4 +40,6 @@ export function BillInput({ handleInput, error, isResetBtnClicked }) {
       </div>
     </>
   );
-}
+};
+
+export default BillInput;

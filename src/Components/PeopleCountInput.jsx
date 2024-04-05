@@ -1,10 +1,18 @@
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import personIcon from "../assets/icon-person.svg";
 
 // eslint-disable-next-line react/prop-types
-export function PeopleCountInput({ handleInput, error, isResetBtnClicked }) {
-  const inputRef = useRef(null);
-  isResetBtnClicked && (inputRef.current.value = "");
+const PeopleCountInput = ({ handleInput, error, isResetBtnClicked }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    if (isResetBtnClicked) setInputValue("");
+  }, [isResetBtnClicked]);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    handleInput(e);
+  };
   return (
     <>
       <div className="flex items-center justify-between">
@@ -17,9 +25,9 @@ export function PeopleCountInput({ handleInput, error, isResetBtnClicked }) {
           type="text"
           name="peopleCount"
           id="peopleCount"
-          ref={inputRef}
+          value={inputValue}
           placeholder="0"
-          onChange={handleInput}
+          onChange={handleChange}
           className={`mt-2 block w-full rounded-md bg-VeryLightGrayishCyan px-4 py-3 text-right placeholder:text-VeryDarkCyan md:text-2xl ${
             error ? "outline-red-500" : "outline-StrongCyan"
           }`}
@@ -32,4 +40,6 @@ export function PeopleCountInput({ handleInput, error, isResetBtnClicked }) {
       </div>
     </>
   );
-}
+};
+
+export default PeopleCountInput;
