@@ -1,5 +1,5 @@
-import { PeopleCountInput } from "./PeopleCountInput";
-import { BillInput } from "./BillInput";
+import PeopleCountInput from "./PeopleCountInput";
+import BillInput from "./BillInput";
 import TipInput from "./TipInput";
 import { useState } from "react";
 
@@ -9,12 +9,12 @@ const InputForm = ({ setInputState, isResetBtnClicked }) => {
 
   function handleInput(e) {
     const { name, value } = e.target;
-    const regex = /^[1-9]*\.?[1-9]*$/;
+    const regex = /^(?!0*(\.0+)?$)(\d+|\d*\.\d+)$/; // disallow leading zeros
     if (!regex.test(value)) {
       setError({ ...error, [name]: "Invalid Input" });
       return;
     }
-    setError({});
+    setError({ ...error, [name]: "" });
     setInputState((prevState) => ({ ...prevState, [name]: value }));
   }
 
