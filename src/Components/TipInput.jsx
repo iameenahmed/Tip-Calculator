@@ -1,22 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
   const [selectedTip, setSelectedTip] = useState();
+  const [customTip, setCustomTip] = useState("");
 
   const tipOptions = [5, 10, 15, 25, 50];
 
-  const inputRef = useRef(null);
-  const radioRef = useRef(null);
-  isResetBtnClicked && (inputRef.current.value = "");
-  isResetBtnClicked && (radioRef.current.checked = false);
   useEffect(() => {
-    setSelectedTip("");
+    if (isResetBtnClicked) {
+      setSelectedTip("");
+      setCustomTip("");
+    }
   }, [isResetBtnClicked]);
 
-  const handleRadioChange = (e) => {
+  const handleInputChange = (e, isCustomTip = false) => {
     handleInput(e);
-    setSelectedTip(e.target.value);
+    if (isCustomTip) {
+      setSelectedTip("");
+      setCustomTip(e.target.value);
+    } else {
+      setSelectedTip(e.target.value);
+      setCustomTip("");
+    }
   };
 
   return (
@@ -38,11 +44,11 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
             >
               <input
                 type="radio"
-                ref={radioRef}
                 name="tipPercent"
                 value={tipOption}
+                checked={selectedTip === tipOption.toString()}
                 className="hidden"
-                onChange={handleRadioChange}
+                onChange={(e) => handleInputChange(e)}
               />
               {`${tipOption}%`}
             </label>
@@ -52,9 +58,9 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
           type="text"
           name="tipPercent"
           id="tipPercent"
-          ref={inputRef}
+          value={customTip}
           placeholder="Custom"
-          onChange={handleInput}
+          onChange={(e) => handleInputChange(e, true)}
           className={`rounded-md bg-VeryLightGrayishCyan px-3.5 py-3 text-right text-DarkGrayishCyan outline-StrongCyan placeholder:text-VeryDarkCyan md:text-2xl ${
             error ? "outline-red-500" : "outline-StrongCyan"
           }`}
