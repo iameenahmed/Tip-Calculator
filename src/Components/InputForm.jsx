@@ -1,11 +1,15 @@
 import PeopleCountInput from "./PeopleCountInput";
 import BillInput from "./BillInput";
 import TipInput from "./TipInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const InputForm = ({ setInputState, isResetBtnClicked }) => {
   const [error, setError] = useState({});
+
+  useEffect(() => {
+    setError({});
+  }, [isResetBtnClicked]);
 
   function handleInput(e) {
     const { name, value } = e.target;
