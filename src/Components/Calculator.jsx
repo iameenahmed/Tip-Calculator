@@ -1,27 +1,33 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import InputForm from "./InputForm";
 import Result from "./Result";
 
 const Calculator = () => {
-  const [inputState, setInputState] = useState({
-    billAmount: "",
-    peopleCount: "",
-    tipPercent: "",
-  });
+  const [inputState, setInputState] = useState({});
+  const [resultState, setResultState] = useState({});
+  const [isResetBtnClicked, setIsResetBtnClicked] = useState(false);
 
-  const [resultState, setResultState] = useState({
-    tipAmount: "0.00",
-    totalPerPerson: "0.00",
-  });
+  const calculateTipAmount = useCallback(
+    ({ billAmount, peopleCount, tipPercent }) => {
+      const tipAmount = (billAmount * (tipPercent / 100)) / peopleCount;
+      return tipAmount.toFixed(2);
+    },
+    [],
+  );
 
-  function calculateTipAmount({ billAmount, peopleCount, tipPercent }) {
-    const tipAmount = (billAmount * (tipPercent / 100)) / peopleCount;
-    return tipAmount.toFixed(2);
-  }
+  const calculateTotalPerPerson = useCallback(
+    ({ billAmount, peopleCount, tipPercent }) => {
+      const totalPerPerson =
+        (billAmount * (1 + tipPercent / 100)) / peopleCount;
+      return totalPerPerson.toFixed(2);
+    },
+    [],
+  );
 
-  function calculateTotalPerPerson({ billAmount, peopleCount, tipPercent }) {
-    const totalPerPerson = (billAmount * (1 + tipPercent / 100)) / peopleCount;
-    return totalPerPerson.toFixed(2);
+  function handleReset() {
+    setIsResetBtnClicked(true);
+    setInputState({});
+    setResultState({});
   }
 
   useEffect(() => {
@@ -30,18 +36,28 @@ const Calculator = () => {
       inputState.peopleCount &&
       inputState.tipPercent
     ) {
-      setResultState((prevState) => ({
-        ...prevState,
+      setResultState({
         tipAmount: calculateTipAmount(inputState),
         totalPerPerson: calculateTotalPerPerson(inputState),
-      }));
+      });
     }
-  }, [inputState]);
+    if (isResetBtnClicked) {
+      setIsResetBtnClicked(false);
+    }
+  }, [
+    inputState,
+    isResetBtnClicked,
+    calculateTipAmount,
+    calculateTotalPerPerson,
+  ]);
 
   return (
-    <div className="w-full rounded-t-3xl bg-White px-6 py-8 text-[16px] md:flex md:gap-8 md:rounded-3xl md:p-8">
-      <InputForm setInputState={setInputState} />
-      <Result resultState={resultState} />
+    <div className="w-full rounded-t-3xl bg-White px-6 py-8 md:flex md:gap-8 md:rounded-3xl md:p-8">
+      <InputForm
+        setInputState={setInputState}
+        isResetBtnClicked={isResetBtnClicked}
+      />
+      <Result resultState={resultState} handleReset={handleReset} />
     </div>
   );
 };
