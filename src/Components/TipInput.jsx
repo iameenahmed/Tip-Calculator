@@ -61,8 +61,10 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
           value={customTip}
           placeholder="Custom"
           onChange={(e) => handleInputChange(e, true)}
-          className={`rounded-md bg-VeryLightGrayishCyan px-3.5 py-3 text-right text-DarkGrayishCyan outline-StrongCyan placeholder:text-VeryDarkCyan md:text-2xl ${
-            error ? "outline-red-500" : "outline-StrongCyan"
+          className={`rounded-md border-2 bg-VeryLightGrayishCyan px-2.5 py-2.5 text-right text-VeryDarkCyan placeholder:text-DarkGrayishCyan md:text-2xl ${
+            error
+              ? "animate-shake border-red-500 outline-red-500"
+              : "border-transparent outline-StrongCyan"
           }`}
         />
       </div>

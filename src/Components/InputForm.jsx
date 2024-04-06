@@ -23,7 +23,7 @@ const InputForm = ({ setInputState, isResetBtnClicked }) => {
   }
 
   return (
-    <div className="text-VeryDarkCyan md:basis-1/2 md:p-[0.875rem]">
+    <div className="text-DarkGrayishCyan md:basis-1/2 md:p-[0.875rem]">
       <form>
         <BillInput
           handleInput={handleInput}

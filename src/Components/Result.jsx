@@ -25,7 +25,7 @@ const Result = ({
       </div>
 
       <button
-        className="mt-auto inline-block w-full rounded-lg bg-StrongCyan px-4 py-3 font-bold uppercase text-VeryDarkCyan hover:bg-LightGrayishCyan focus:bg-LightGrayishCyan"
+        className="mt-auto inline-block w-full rounded-lg bg-StrongCyan px-4 py-3 font-bold uppercase text-VeryDarkCyan transition-colors duration-300 hover:bg-LightGrayishCyan focus:bg-LightGrayishCyan"
         onClick={handleReset}
       >
         Reset
