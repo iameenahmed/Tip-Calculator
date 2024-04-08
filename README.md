@@ -14,11 +14,11 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop Design](images/desktop-design.jpg)
+![Desktop Design](design/desktop-design-empty.jpg)
 
 ### Links
 
-- Solution URL: [frontendmentor.io/solutions/tip-calculator](https://www.frontendmentor.io/solutions/tip-calculator)
+- Solution URL: [frontendmentor.io/solutions/tip-calculator](https://www.frontendmentor.io/solutions/tip-calculator-using-reactjs-tVGy8eQUFH)
 
 ## My process
 
