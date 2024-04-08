@@ -26,12 +26,21 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
   };
 
   return (
-    <fieldset className="my-[2.125rem]">
+    <div className="my-[2.125rem]">
       <div className="flex items-center justify-between">
-        <legend className="mb-4">Select tip %</legend>
-        {error && <span className="block text-sm text-red-500">{error}</span>}
+        <p id="tip-label" className="mb-4">
+          Select tip %
+        </p>
+        {error && (
+          <span aria-live="polite" className="block text-sm text-red-500">
+            {error}
+          </span>
+        )}
       </div>
-      <div className="grid grid-cols-2 grid-rows-3 gap-3.5 font-bold min-[440px]:grid-cols-3 min-[440px]:grid-rows-2">
+      <div
+        aria-labelledby="tip-label"
+        className="grid grid-cols-2 grid-rows-3 gap-3.5 font-bold min-[440px]:grid-cols-3 min-[440px]:grid-rows-2"
+      >
         {tipOptions.map((tipOption, index) => {
           return (
             <label
@@ -68,7 +77,7 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
           }`}
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

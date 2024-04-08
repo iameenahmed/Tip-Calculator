@@ -18,7 +18,11 @@ const BillInput = ({ handleInput, error, isResetBtnClicked }) => {
     <>
       <div className="flex items-center justify-between">
         <label htmlFor="billAmount">Bill</label>
-        {error && <span className="block text-sm text-red-500">{error}</span>}
+        {error && (
+          <span aria-live="polite" className="block text-sm text-red-500">
+            {error}
+          </span>
+        )}
       </div>
       <div className="relative">
         <input

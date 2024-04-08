@@ -6,7 +6,7 @@ const Result = ({
 }) => {
   return (
     <div className="mt-5 flex w-full flex-col rounded-xl bg-VeryDarkCyan p-5 text-White md:mt-0 md:basis-1/2 md:p-11">
-      <div className="flex items-center justify-between md:mt-5">
+      <div className="flex items-center justify-between md:mt-3">
         <h2>
           Tip Amount
           <span className="block text-base text-GrayishCyan">/ person</span>
@@ -27,8 +27,9 @@ const Result = ({
       </div>
 
       <button
-        className="mt-auto inline-block w-full rounded-lg bg-StrongCyan px-4 py-3 font-bold uppercase text-VeryDarkCyan transition-colors duration-300 hover:bg-LightGrayishCyan focus:bg-LightGrayishCyan"
+        className="mt-auto inline-block w-full rounded-lg bg-StrongCyan px-4 py-3 font-bold uppercase text-VeryDarkCyan transition-colors duration-300 hover:bg-LightGrayishCyan focus:bg-LightGrayishCyan  disabled:opacity-30"
         onClick={handleReset}
+        disabled={!(tipAmount && totalPerPerson)}
       >
         Reset
       </button>
