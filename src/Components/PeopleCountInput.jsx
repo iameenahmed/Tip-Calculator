@@ -28,7 +28,7 @@ const PeopleCountInput = ({ handleInput, error, isResetBtnClicked }) => {
           value={inputValue}
           placeholder="0"
           onChange={handleChange}
-          className={`mt-2 block w-full rounded-md border-2 bg-VeryLightGrayishCyan px-4 py-2.5 text-right text-VeryDarkCyan placeholder:text-DarkGrayishCyan md:text-2xl ${
+          className={`mt-2 block w-full rounded-md border-2 bg-VeryLightGrayishCyan px-4 py-1.5 text-right text-VeryDarkCyan placeholder:text-DarkGrayishCyan md:text-2xl ${
             error
               ? "animate-shake border-red-500 outline-red-500"
               : "border-transparent outline-StrongCyan"

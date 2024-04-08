@@ -26,17 +26,17 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
   };
 
   return (
-    <fieldset className="my-8">
+    <fieldset className="my-[2.125rem]">
       <div className="flex items-center justify-between">
         <legend className="mb-4">Select tip %</legend>
         {error && <span className="block text-sm text-red-500">{error}</span>}
       </div>
-      <div className="grid grid-cols-2 grid-rows-3 gap-4 font-bold md:grid-cols-3 md:grid-rows-2">
+      <div className="grid grid-cols-2 grid-rows-3 gap-3.5 font-bold min-[440px]:grid-cols-3 min-[440px]:grid-rows-2">
         {tipOptions.map((tipOption, index) => {
           return (
             <label
               key={index}
-              className={`block cursor-pointer rounded-md py-3 text-center text-White transition-colors duration-300 md:text-2xl ${
+              className={`block cursor-pointer rounded-md py-2 text-center text-2xl text-White transition-colors duration-300 ${
                 selectedTip === tipOption.toString()
                   ? "bg-StrongCyan"
                   : "bg-VeryDarkCyan hover:bg-StrongCyan"
@@ -61,7 +61,7 @@ const TipInput = ({ handleInput, error, isResetBtnClicked }) => {
           value={customTip}
           placeholder="Custom"
           onChange={(e) => handleInputChange(e, true)}
-          className={`rounded-md border-2 bg-VeryLightGrayishCyan px-2.5 py-2.5 text-right text-VeryDarkCyan placeholder:text-DarkGrayishCyan md:text-2xl ${
+          className={`rounded-md border-2 bg-VeryLightGrayishCyan px-2.5 py-2 text-right text-2xl text-VeryDarkCyan placeholder:text-center placeholder:text-DarkGrayishCyan ${
             error
               ? "animate-shake border-red-500 outline-red-500"
               : "border-transparent outline-StrongCyan"
